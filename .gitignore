@@ -242,3 +242,4 @@ GitHub.sublime-settings
 
 # Ignore application configuration
 /config/application.yml
+/public/dist
