@@ -1,1 +1,3 @@
 # APP constants go here
+PASSWORD_LENGTH_MIN = 8
+PASSWORD_LENGTH_MAX = 72
