@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "#username" do
     it {is_expected.to validate_presence_of(:username)}
-    it {is_expected.to validate_uniqueness_of(:username)}
     it {is_expected.to allow_value("sbaig").for(:username)}
     it {is_expected.to allow_value("sbaig1").for(:username)}
     it {is_expected.to_not allow_value("sba ig").for(:username)}
@@ -13,7 +12,6 @@ RSpec.describe User, type: :model do
 
   describe "#email" do
     it {is_expected.to validate_presence_of(:email)}
-    it {is_expected.to validate_uniqueness_of(:email)}
     it {is_expected.to allow_value("sbaigweb@gmail.com").for(:email)}
     it {is_expected.to allow_value("sulman.baig@synnapps.com").for(:email)}
     it {is_expected.to_not allow_value("sulman baig@gmail.com").for(:email)}
@@ -66,5 +64,11 @@ RSpec.describe User, type: :model do
     user = FactoryBot.create(:user)
     user.update(username: "sulmanweb")
     expect(user.valid?).to be_truthy
+  end
+
+  it "enqueues welcome mailer after creation" do
+    user = FactoryBot.create(:user, email: "sulmanweb@gmail.com")
+    mail = ActionMailer::Base.deliveries.last
+    expect(mail.to).to eql [user.email]
   end
 end
