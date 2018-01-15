@@ -239,3 +239,7 @@ GitHub.sublime-settings
 
 
 # End of https://www.gitignore.io/api/ruby,linux,macos,rails,rubymine,sublimetext
+
+# Ignore application configuration
+/config/application.yml
+/public/dist
