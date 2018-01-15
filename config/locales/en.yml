@@ -1,3 +1,6 @@
 en:
   app_name: "Wunderlist OpenSource Clone"
   app_description: "Wunderlist working app free of cost to reproduce and working"
+  error:
+    not_found: "Sorry! Page you requested could not be found"
+    internal_server_error: "Sorry! there was some insternal server error. We will resolve this issue asap"
