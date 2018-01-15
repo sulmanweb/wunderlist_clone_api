@@ -16,6 +16,8 @@ gem 'puma', '3.11.0'
 gem 'jbuilder', '2.7.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', '1.0.2'
+# For secrets
+gem 'figaro', '1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
