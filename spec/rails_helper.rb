@@ -67,3 +67,12 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 end
 include ActiveJob::TestHelper
+
+# Adding headers to request helper
+def sign_in_test_headers session
+  headers = {}
+  headers["ACCEPT"] = 'application/json'
+  headers["sid"] = session.id
+  headers["utoken"] = session.utoken
+  return headers
+end

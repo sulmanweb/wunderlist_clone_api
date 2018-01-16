@@ -4,7 +4,7 @@ class V1::Auth::RegistrationsController < ApplicationController
     if @user.save
       return render_success_user_created
     else
-      return render_error_save @user
+      return render_error_save :unprocessable_entity, @user
     end
   end
 
