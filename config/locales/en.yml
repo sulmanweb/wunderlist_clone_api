@@ -10,3 +10,7 @@ en:
   error:
     not_found: "Sorry! Page you requested could not be found"
     internal_server_error: "Sorry! there was some insternal server error. We will resolve this issue asap"
+    params_absent: "All required params not provided."
+    auth:
+      user_not_found: "Sorry the login credentials are wrong."
+      password_wrong: "Sorry the login credentials are wrong."

@@ -4,7 +4,7 @@ class V1::Auth::RegistrationsController < ApplicationController
     if @user.save
       return render_success_user_created
     else
-      return render_error_user_save
+      return render_error_save @user
     end
   end
 
@@ -18,9 +18,5 @@ class V1::Auth::RegistrationsController < ApplicationController
 
   def render_success_user_created
     render status: :created, template: 'auth/sign_up.json.jbuilder'
-  end
-
-  def render_error_user_save
-    render status: :unprocessable_entity, json: {errors: @user.errors.full_messages}
   end
 end
