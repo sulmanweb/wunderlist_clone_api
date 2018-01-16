@@ -82,4 +82,18 @@ RSpec.describe "Auths", type: :request do
       expect(response).to have_http_status(401)
     end
   end
+
+  describe "DELETE v1/auth/destroy" do
+    let(:session) {FactoryBot.create(:session)}
+    it "destroys user" do
+      headers = sign_in_test_headers session
+      delete v1_auth_destroy_path, headers: headers
+      expect(response).to have_http_status(204)
+      expect(User.find_by_id(session.user.id)).to eql nil
+    end
+    it "gives error if user not signed in" do
+      delete v1_auth_destroy_path
+      expect(response).to have_http_status(401)
+    end
+  end
 end
