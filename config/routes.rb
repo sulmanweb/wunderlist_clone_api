@@ -4,4 +4,10 @@ Rails.application.routes.draw do
   match '/500', to: 'error/errors#internal_server_error', via: :all
 
   get '/api-docs/v1' => redirect('/dist/index.html?url=/apidocs/apidocs_v1.json')
+
+  namespace :v1 do
+    namespace :auth do
+      post 'sign_up', to: 'registrations#create'
+    end
+  end
 end
