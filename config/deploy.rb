@@ -1,4 +1,4 @@
-lock '3.10.1'
+lock '3.9.0'
 
 set :application, 'wunderlist_api'
 set :repo_url, 'git@github.com:sulmanweb/wunderlist_clone_api.git'

@@ -29,13 +29,6 @@ group :development, :test do
   gem 'shoulda-matchers', '3.1.2', require: false
   # for data factories
   gem 'factory_bot_rails', '4.8.2'
-
-  # deployments
-  gem 'capistrano', '3.10.1'
-  gem 'capistrano-rails', '1.3.1'
-  gem 'capistrano-rbenv', '2.1.3'
-  gem 'capistrano-rails-console', '2.2.1'
-  gem 'airbrussh', '1.3.0'
 end
 
 group :development do
@@ -47,6 +40,12 @@ group :development do
   gem 'spring-commands-rspec', '1.0.4'
   # for viewing emails in browser in development mode
   gem 'letter_opener', '1.4.1'
+  # for deployments
+  gem 'capistrano', '3.9.0'
+  gem 'capistrano-rails', '1.3.0'
+  gem 'capistrano-rbenv', '2.1.1'
+  gem 'capistrano-rails-console', '1.0.2'
+  gem 'airbrussh', '1.3.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
