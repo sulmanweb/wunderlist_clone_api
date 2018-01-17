@@ -1,0 +1,1 @@
+json.partial! 'users/self', user: @user
