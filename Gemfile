@@ -29,6 +29,13 @@ group :development, :test do
   gem 'shoulda-matchers', '3.1.2', require: false
   # for data factories
   gem 'factory_bot_rails', '4.8.2'
+
+  # deployments
+  gem 'capistrano', '3.10.1'
+  gem 'capistrano-rails', '1.3.1'
+  gem 'capistrano-rbenv', '2.1.3'
+  gem 'capistrano-rails-console', '2.2.1'
+  gem 'airbrussh', '1.3.0'
 end
 
 group :development do
