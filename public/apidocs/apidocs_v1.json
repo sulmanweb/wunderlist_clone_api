@@ -5,7 +5,7 @@
         "title": "Wunderlist Clone API",
         "description": "Wunderlist API clone in Ruby on Rails API only interface"
     },
-    "host": "api-wunderlist.appcasts.com",
+    "host": "api-wunderlist.castsapp.com",
     "basePath": "/v1",
     "schemes": [
         "https"
