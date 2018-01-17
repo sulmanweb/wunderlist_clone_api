@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       delete 'sign_out', to: 'sessions#destroy'
       delete 'destroy', to: 'registrations#destroy'
     end
-    resources :lists
+    resources :lists do
+      resources :tasks
+    end
   end
 end
