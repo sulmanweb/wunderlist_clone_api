@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :password, length: {in: PASSWORD_LENGTH_MIN..PASSWORD_LENGTH_MAX}, format: {with: /\A(?=.*[0-9])(?=.*[!@#\$%\^&\*])/}, if: :password
 
   has_many :sessions, dependent: :destroy
+  has_many :lists, dependent: :destroy
 
   after_create :send_welcome
 
