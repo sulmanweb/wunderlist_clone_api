@@ -1,0 +1,962 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "Wunderlist Clone API",
+        "description": "Wunderlist API clone in Ruby on Rails API only interface"
+    },
+    "host": "api-wunderlist.appcasts.com",
+    "basePath": "/v1",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/auth/sign_up": {
+            "post": {
+                "operationId": "POST_auth-sign_up",
+                "summary": "Register User",
+                "tags": [
+                    "Auths"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/signuppartial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/user-self"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "id": -28865748,
+                                "name": "Ut sint",
+                                "email": "exercitation ut Duis ea",
+                                "username": "ut amet aliquip fugia",
+                                "created_at": "2265-09-28T07:27:20.306Z"
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/auth/sign_in": {
+            "post": {
+                "operationId": "POST_auth-sign_in",
+                "summary": "Log In",
+                "tags": [
+                    "Auths"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/signinpartial"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "user": {
+                                    "$ref": "#/definitions/user-self"
+                                },
+                                "session": {
+                                    "$ref": "#/definitions/session"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/auth/sign_out": {
+            "delete": {
+                "operationId": "DELETE_auth-sign_out",
+                "summary": "Log Out",
+                "tags": [
+                    "Auths"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "",
+                        "schema": {
+                            "type": "object"
+                        },
+                        "examples": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/auth/destroy": {
+            "delete": {
+                "operationId": "DELETE_auth-destroy",
+                "summary": "Destroy User",
+                "tags": [
+                    "Auths"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/lists": {
+            "post": {
+                "operationId": "POST_lists",
+                "summary": "Create New List",
+                "tags": [
+                    "Lists"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/listpartial"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/list"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            },
+            "get": {
+                "operationId": "GET_lists",
+                "summary": "Get all Lists",
+                "tags": [
+                    "Lists"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/list"
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/lists/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET_lists-id",
+                "summary": "Get a List",
+                "tags": [
+                    "Lists"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/list"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "PUT_lists-id",
+                "summary": "Edit a List",
+                "tags": [
+                    "Lists"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/list"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DELETE_lists-id",
+                "summary": "Delete a List",
+                "tags": [
+                    "Lists"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/lists/{list_id}/tasks": {
+            "parameters": [
+                {
+                    "name": "list_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "post": {
+                "operationId": "POST_lists-list_id-tasks",
+                "summary": "Create New TAsk",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/taskpartial"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/task"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            },
+            "get": {
+                "operationId": "GET_lists-list_id-tasks",
+                "summary": "Get all Tasks of a List",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/task"
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        },
+        "/lists/{list_id}/tasks/{id}": {
+            "parameters": [
+                {
+                    "name": "list_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "operationId": "GET_lists-list_id-tasks-id",
+                "summary": "Get a Task",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/task"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            },
+            "put": {
+                "operationId": "PUT_lists-list_id-tasks-id",
+                "summary": "Edit a Task",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/taskpartial"
+                        }
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/task"
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            },
+            "delete": {
+                "operationId": "DELETE_lists-list_id-tasks-id",
+                "summary": "Delete a Task",
+                "tags": [
+                    "Tasks"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:sid"
+                    },
+                    {
+                        "$ref": "#/parameters/trait:authHeaders:utoken"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": ""
+                    },
+                    "401": {
+                        "$ref": "#/responses/trait:standardErrors:401"
+                    },
+                    "403": {
+                        "$ref": "#/responses/trait:standardErrors:403"
+                    },
+                    "404": {
+                        "$ref": "#/responses/trait:standardErrors:404"
+                    },
+                    "422": {
+                        "$ref": "#/responses/trait:standardErrors:422"
+                    },
+                    "500": {
+                        "$ref": "#/responses/trait:standardErrors:500"
+                    }
+                }
+            }
+        }
+    },
+    "parameters": {
+        "trait:authHeaders:sid": {
+            "name": "sid",
+            "in": "header",
+            "required": true,
+            "type": "integer"
+        },
+        "trait:authHeaders:utoken": {
+            "name": "utoken",
+            "in": "header",
+            "required": true,
+            "type": "string",
+            "minLength": 64,
+            "maxLength": 64
+        }
+    },
+    "responses": {
+        "trait:standardErrors:401": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "errors"
+                ]
+            }
+        },
+        "trait:standardErrors:403": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "errors"
+                ]
+            }
+        },
+        "trait:standardErrors:404": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "errors"
+                ]
+            }
+        },
+        "trait:standardErrors:422": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "errors"
+                ]
+            }
+        },
+        "trait:standardErrors:500": {
+            "description": "",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "required": [
+                    "errors"
+                ]
+            }
+        }
+    },
+    "definitions": {
+        "signuppartial": {
+            "title": "SignUpPartial",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string",
+                    "pattern": "\\A(\\w){1,15}\\z"
+                },
+                "email": {
+                    "type": "string",
+                    "pattern": "\\A(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))\\z"
+                },
+                "password": {
+                    "type": "string",
+                    "minLength": 8,
+                    "maxLength": 72,
+                    "pattern": "\\A(?=.*[0-9])(?=.*[!@#\\$%\\^&\\*])"
+                }
+            },
+            "required": [
+                "username",
+                "email",
+                "password"
+            ],
+            "example": {
+                "name": "Sulman Baig",
+                "username": "sbaigweb",
+                "email": "sulman.baig@synnapps.com",
+                "password": "abcd@1234"
+            }
+        },
+        "user-self": {
+            "title": "User Self",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "id",
+                "email",
+                "username",
+                "created_at"
+            ],
+            "example": {
+                "id": 4,
+                "name": "Sulman Baig",
+                "username": "sbaigweb",
+                "email": "sulman.baig@synnapps.com",
+                "created_at": "2018-01-16T10:20:23.000Z"
+            }
+        },
+        "signinpartial": {
+            "title": "SignInPartial",
+            "type": "object",
+            "properties": {
+                "auth": {
+                    "type": "string",
+                    "description": "can be user's `email` or `username` in here"
+                },
+                "password": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "auth",
+                "password"
+            ]
+        },
+        "session": {
+            "title": "Session",
+            "type": "object",
+            "properties": {
+                "sid": {
+                    "type": "integer"
+                },
+                "utoken": {
+                    "type": "string",
+                    "minLength": 64,
+                    "maxLength": 64
+                },
+                "last_used_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "sid",
+                "utoken",
+                "last_used_at",
+                "created_at"
+            ],
+            "example": {
+                "utoken": "GupXkUkJ2aNnXqgRcnP1LM7kjkd19Zsvv9HeA5bSCWQ9ipxQqgVEPvqbdkrkzS8u",
+                "last_used_at": "2018-01-16T10:26:04.000Z",
+                "created_at": "2018-01-16T10:26:04.000Z",
+                "sid": 1
+            }
+        },
+        "listpartial": {
+            "title": "ListPartial",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "name"
+            ]
+        },
+        "list": {
+            "title": "List",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "user_id",
+                "created_at"
+            ]
+        },
+        "taskpartial": {
+            "title": "TaskPartial",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer",
+                    "default": 0,
+                    "description": "0 => todo\n\n1 => done",
+                    "enum": [
+                        "todo",
+                        "done"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            },
+            "required": [
+                "name",
+                "status"
+            ]
+        },
+        "task": {
+            "title": "Task",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "integer",
+                    "default": "todo",
+                    "enum": [
+                        "todo",
+                        "done"
+                    ]
+                },
+                "list_id": {
+                    "type": "integer"
+                },
+                "created_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "status",
+                "list_id",
+                "created_at"
+            ]
+        }
+    }
+}
