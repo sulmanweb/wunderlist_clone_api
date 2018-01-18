@@ -8,7 +8,7 @@
     "host": "api-wunderlist.castsapp.com",
     "basePath": "/v1",
     "schemes": [
-        "https"
+        "http"
     ],
     "consumes": [
         "application/json"
