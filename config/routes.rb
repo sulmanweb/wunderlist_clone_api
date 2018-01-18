@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get '/api-docs/v1' => redirect('/dist/index.html?url=/apidocs/apidocs_v1.json')
 
-  namespace :v1 do
+  namespace :v1, defaults: {format: 'json'} do
     namespace :auth do
       post 'sign_up', to: 'registrations#create'
       post 'sign_in', to: 'sessions#create'
