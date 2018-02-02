@@ -1,6 +1,6 @@
 set :stage, :production
 set :rails_env, :production
-set :deploy_to, '/home/deploy/apis/wunderlist'
+set :deploy_to, '/home/deploy/apis/wunderlist_api'
 # set :branch, 'master'
 # set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 # set :whenever_roles, %w{web app db}
